@@ -365,6 +365,7 @@ endif()
 set(SPIRV_LIBRARIES "-lSPIRV-Tools-opt -lSPIRV-Tools -lSPIRV-Tools-link")
 set(SPIRV_SHARED_LIBRARIES "-lSPIRV-Tools-shared")
 
+if (ENABLE_SPIRV_TOOLS_INSTALL)
 # Build pkg-config file
 # Use a first-class target so it's regenerated when relevant files are updated.
 add_custom_target(spirv-tools-pkg-config ALL
@@ -391,7 +392,6 @@ add_custom_target(spirv-tools-shared-pkg-config ALL
         DEPENDS "CHANGES" "cmake/SPIRV-Tools-shared.pc.in" "cmake/write_pkg_config.cmake")
 
 # Install pkg-config file
-if (ENABLE_SPIRV_TOOLS_INSTALL)
   install(
     FILES
       ${CMAKE_CURRENT_BINARY_DIR}/SPIRV-Tools.pc
